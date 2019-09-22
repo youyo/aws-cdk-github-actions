@@ -31,7 +31,7 @@ if [ -e requirements.txt ]; then
 fi
 
 echo 'Run cdk diff'
-OUTPUT=$(sh -c "cdk diff $*" 2>&1)
+OUTPUT=$(sh -c "npx cdk diff $*" 2>&1)
 echo "${OUTPUT}"
 
 COMMENT="#### \`cdk diff $*\`

@@ -31,7 +31,7 @@ if [ -e requirements.txt ]; then
 fi
 
 echo 'Run cdk deploy'
-OUTPUT=$(sh -c "cdk deploy --require-approval never $*" 2>&1)
+OUTPUT=$(sh -c "npx cdk deploy --require-approval never $*" 2>&1)
 SUCCESS=$?
 echo "${OUTPUT}"
 
