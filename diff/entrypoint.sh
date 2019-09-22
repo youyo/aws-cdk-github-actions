@@ -7,6 +7,7 @@ wrap() {
 	if [[ $(echo "$1" | wc -l) -gt ${WRAP_LINES:-20} ]]; then
 		echo "
 <details><summary>Show Output</summary>
+
 \`\`\`
 ${1}
 \`\`\`
@@ -14,6 +15,7 @@ ${1}
 "
 	else
 		echo "
+
 \`\`\`
 ${1}
 \`\`\`
@@ -22,6 +24,7 @@ ${1}
 }
 
 if [ -e requirements.txt ]; then
+	echo ''
 	echo 'Install from requirements.txt'
 	pip install -r requirements.txt
 	echo ''
