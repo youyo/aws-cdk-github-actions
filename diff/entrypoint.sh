@@ -27,8 +27,9 @@ fi
 
 OUTPUT="$(sh -c "cdk diff" 2>&1 ; true)"
 echo "${OUTPUT}"
-COMMENT="#### \`cdk diff\` Success
-${OUTPUT}
+
+COMMENT="#### \`cdk diff\`
+$(wrap "$OUTPUT")
 
 *Workflow: \`$GITHUB_WORKFLOW\`, Action: \`$GITHUB_ACTION\`*"
 
