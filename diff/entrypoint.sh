@@ -22,10 +22,13 @@ ${1}
 }
 
 if [ -e requirements.txt ]; then
+	echo 'Install from requirements.txt'
 	pip install -r requirements.txt
+	echo ''
 fi
 
-OUTPUT=$(sh -c "cdk diff $*" 2>&1 ; true)
+echo 'Run cdk diff'
+OUTPUT=$(sh -c "cdk diff $*" 2>&1)
 echo "${OUTPUT}"
 
 COMMENT="#### \`cdk diff $*\`
