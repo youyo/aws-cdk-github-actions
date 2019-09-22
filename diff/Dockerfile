@@ -10,6 +10,8 @@ LABEL "maintainer"="youyo <1003ni2@gmail.com>"
 LABEL "name"="aws-cdk-github-actions"
 
 RUN apk --update --no-cache add nodejs nodejs-npm python3 jq curl bash
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+RUN ln -sf /usr/bin/pip3 /usr/bin/pip
 RUN npm install -g aws-cdk
 COPY entrypoint.sh /entrypoint.sh
 RUN ["chmod", "+x", "/entrypoint.sh"]

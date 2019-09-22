@@ -21,6 +21,10 @@ $1
 	fi
 }
 
+if [ -e requirements.txt ]; then
+	pip install -r requirements.txt
+fi
+
 OUTPUT="$(sh -c "cdk diff" 2>&1 ; true)"
 echo "${OUTPUT}"
 COMMENT="#### \`cdk diff\` Success
