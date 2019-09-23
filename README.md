@@ -4,13 +4,13 @@ AWS-CDK GitHub Actions allow you to run `cdk deploy` and `cdk diff` on your pull
 
 ## Actions
 
-### Diff Action
+### [Diff Action](diff/)
 
 Runs `cdk diff` and comments back with the output.
 
 <img src="./assets/diff.png" alt="AWS-CDK diff Action" width="80%" />
 
-### Deploy Action
+### [Deploy Action](deploy/)
 
 Runs `cdk deploy --require-approval never` and comments back with the output.
 
