@@ -1,0 +1,25 @@
+name: 'AWS CDK GitHub Actions'
+description: 'Runs AWS-CDK via GitHub Actions.'
+author: 'youyo <1003ni2@gmail.com>'
+branding:
+  icon: 'terminal'
+  color: 'yellow'
+inputs:
+  cdk_stack:
+    description: 'AWS CDK stack name to execute.'
+    default: '*'
+  cdk_version:
+    description: 'AWS CDK version to install.'
+    default: 'latest'
+  cdk_subcommand:
+    description: 'AWS CDK subcommand to execute.'
+    required: true
+  working_dir:
+    description: 'AWS CDK working directory.'
+    default: '.'
+  actions_comment:
+    description: 'Whether or not to comment on pull requests.'
+    default: true
+runs:
+  using: 'docker'
+  image: './Dockerfile'
