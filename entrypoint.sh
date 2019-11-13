@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -u
 
 function parseInputs(){
 	# Required inputs
@@ -13,30 +13,42 @@ function parseInputs(){
 function installAwsCdk(){
 	echo "Install aws-cdk ${INPUT_CDK_VERSION}"
 	if [ "${INPUT_CDK_VERSION}" == "latest" ]; then
-		npm install -g aws-cdk
+		npm install -g aws-cdk >/dev/null 2>&1
 		if [ "${?}" -ne 0 ]; then
 			echo "Failed to install aws-cdk ${INPUT_CDK_VERSION}"
+		else
+			echo "Successful install aws-cdk ${INPUT_CDK_VERSION}"
 		fi
 	else
-		npm install -g aws-cdk@${INPUT_CDK_VERSION}
+		npm install -g aws-cdk@${INPUT_CDK_VERSION} >/dev/null 2>&1
 		if [ "${?}" -ne 0 ]; then
 			echo "Failed to install aws-cdk ${INPUT_CDK_VERSION}"
+		else
+			echo "Successful install aws-cdk ${INPUT_CDK_VERSION}"
 		fi
 	fi
 }
 
 function installPipRequirements(){
 	if [ -e "requirements.txt" ]; then
-		pip install -r requirements.txt
+		echo "Install requirements.txt"
+		pip install -r requirements.txt >/dev/null 2>&1
+		if [ "${?}" -ne 0 ]; then
+			echo "Failed to install requirements.txt"
+		else
+			echo "Successful install requirements.txt"
+		fi
 	fi
 }
 
 function runCdk(){
+	echo "Run cdk ${INPUT_CDK_SUBCOMMAND} ${*}"
 	output=$(cdk ${INPUT_CDK_SUBCOMMAND} ${*} 2>&1)
 	exitCode=${?}
+	echo "${output}"
 
 	commentStatus="Failed"
-	if [ "${exitCode}" == "0" || "${exitCode}" == "1" ]; then
+	if [ "${exitCode}" == "0" -o "${exitCode}" == "1" ]; then
 		commentStatus="Success"
 	fi
 
@@ -62,6 +74,7 @@ ${output}
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
+	installAwsCdk
 	installPipRequirements
 	runCdk
 }
