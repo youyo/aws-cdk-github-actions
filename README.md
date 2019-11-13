@@ -47,6 +47,35 @@ jobs:
           AWS_DEFAULT_REGION: 'ap-northeast-1'
 ```
 
+### Can I take a assume-role?
+
+If you use assume-role, we recommended using awscredswrap!  
+See: https://github.com/marketplace/actions/aws-assume-role-github-actions#use-as-github-actions
+
+```yaml
+on: [push]
+
+jobs:
+  aws_cdk:
+    runs-on: ubuntu-latest
+    steps:
+	  - name: Assume Role
+        uses: youyo/awscredswrap@master
+        with:
+          role_arn: ${{ secrets.ROLE_ARN }}
+          duration_seconds: 3600
+          role_session_name: 'awscredswrap@GitHubActions'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'ap-northeast-1'
+
+      - name: cdk diff
+        uses: youyo/aws-cdk-github-actions@master
+        with:
+          cdk_subcommand: 'diff'
+```
+
 ## Inputs
 
 - `cdk_subcommand` **Required** AWS CDK subcommand to execute.
