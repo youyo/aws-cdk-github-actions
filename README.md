@@ -59,7 +59,7 @@ jobs:
   aws_cdk:
     runs-on: ubuntu-latest
     steps:
-	  - name: Assume Role
+      - name: Assume Role
         uses: youyo/awscredswrap@master
         with:
           role_arn: ${{ secrets.ROLE_ARN }}
