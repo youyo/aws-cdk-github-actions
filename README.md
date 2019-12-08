@@ -83,6 +83,10 @@ jobs:
 - `working_dir` AWS CDK working directory. (default: '.')
 - `actions_comment` Whether or not to comment on pull requests. (default: true)
 
+## Outputs
+
+- `status_code` Returned status code.
+
 ## ENV
 
 - `AWS_ACCESS_KEY_ID` **Required**
