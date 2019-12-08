@@ -20,6 +20,9 @@ inputs:
   actions_comment:
     description: 'Whether or not to comment on pull requests.'
     default: true
+outputs:
+  status_code:
+    description: 'Returned status code.'
 runs:
   using: 'docker'
   image: './Dockerfile'
