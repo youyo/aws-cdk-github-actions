@@ -91,8 +91,9 @@ jobs:
 
 - `AWS_ACCESS_KEY_ID` **Required**
 - `AWS_SECRET_ACCESS_KEY` **Required**
+- `GITHUB_TOKEN` Required for `actions_comment=true`
 
-Recommended to get `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from secrets.
+Recommended to get `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from secrets. A github token is [automatically made available](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token) as a secret as `GITHUB_TOKEN`. 
 
 ## License
 
