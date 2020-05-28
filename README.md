@@ -2,6 +2,12 @@
 
 AWS-CDK GitHub Actions allow you to run `cdk deploy` and `cdk diff` and ... on your pull requests to help you review.
 
+## Supported language
+
+- TypeScript
+- JavaScript
+- Python
+
 ## Example usage
 
 ```yaml
