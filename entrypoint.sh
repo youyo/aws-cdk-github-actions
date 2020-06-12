@@ -10,6 +10,10 @@ function parseInputs(){
 	fi
 }
 
+function installTypescript(){
+	npm install -g typescript
+}
+
 function installAwsCdk(){
 	echo "Install aws-cdk ${INPUT_CDK_VERSION}"
 	if [ "${INPUT_CDK_VERSION}" == "latest" ]; then
@@ -75,6 +79,7 @@ ${output}
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
+	installTypescript
 	installAwsCdk
 	installPipRequirements
 	runCdk
