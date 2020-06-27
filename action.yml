@@ -20,6 +20,9 @@ inputs:
   actions_comment:
     description: 'Whether or not to comment on pull requests.'
     default: true
+  debug_log:
+    description: 'Enable debug-log'
+    default: false
 outputs:
   status_code:
     description: 'Returned status code.'

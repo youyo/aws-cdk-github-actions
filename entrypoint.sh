@@ -17,14 +17,24 @@ function installTypescript(){
 function installAwsCdk(){
 	echo "Install aws-cdk ${INPUT_CDK_VERSION}"
 	if [ "${INPUT_CDK_VERSION}" == "latest" ]; then
-		npm install -g aws-cdk >/dev/null 2>&1
+		if [ "${INPUT_DEBUG_LOG}" == "true" ]; then
+			npm install -g aws-cdk
+		else
+			npm install -g aws-cdk >/dev/null 2>&1
+		fi
+
 		if [ "${?}" -ne 0 ]; then
 			echo "Failed to install aws-cdk ${INPUT_CDK_VERSION}"
 		else
 			echo "Successful install aws-cdk ${INPUT_CDK_VERSION}"
 		fi
 	else
-		npm install -g aws-cdk@${INPUT_CDK_VERSION} >/dev/null 2>&1
+		if [ "${INPUT_DEBUG_LOG}" == "true" ]; then
+			npm install -g aws-cdk@${INPUT_CDK_VERSION}
+		else
+			npm install -g aws-cdk@${INPUT_CDK_VERSION} >/dev/null 2>&1
+		fi
+
 		if [ "${?}" -ne 0 ]; then
 			echo "Failed to install aws-cdk ${INPUT_CDK_VERSION}"
 		else
@@ -36,7 +46,12 @@ function installAwsCdk(){
 function installPipRequirements(){
 	if [ -e "requirements.txt" ]; then
 		echo "Install requirements.txt"
-		pip install -r requirements.txt >/dev/null 2>&1
+		if [ "${INPUT_DEBUG_LOG}" == "true" ]; then
+			pip install -r requirements.txt
+		else
+			pip install -r requirements.txt >/dev/null 2>&1
+		fi
+
 		if [ "${?}" -ne 0 ]; then
 			echo "Failed to install requirements.txt"
 		else
