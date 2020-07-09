@@ -34,7 +34,7 @@ jobs:
           cdk_subcommand: 'deploy'
           cdk_stack: 'stack1'
           actions_comment: false
-          args: '--require-approval never'
+          cdk_args: '--require-approval never'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -86,6 +86,7 @@ jobs:
 - `cdk_subcommand` **Required** AWS CDK subcommand to execute.
 - `cdk_version` AWS CDK version to install. (default: 'latest')
 - `cdk_stack` AWS CDK stack name to execute. (default: '*')
+- `cdk_args` AWS CDK CLI arguments (default: '')
 - `working_dir` AWS CDK working directory. (default: '.')
 - `actions_comment` Whether or not to comment on pull requests. (default: true)
 - `debug_log` Enable debug-log. (default: false)
