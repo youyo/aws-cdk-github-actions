@@ -1,7 +1,6 @@
 # AWS-CDK GitHub Actions
 
-AWS-CDK GitHub Actions allow you to run `cdk deploy` and `cdk diff` and ... on your pull requests to help you review.
-
+AWS-CDK GitHub Actions allow you to run `cdk` commands from GitHubActions
 ## Supported language
 
 - TypeScript
@@ -17,6 +16,16 @@ jobs:
   aws_cdk:
     runs-on: ubuntu-latest
     steps:
+
+      - name: cdk bootstrap
+        uses: youyo/aws-cdk-github-actions@v1
+        with:
+          cdk_subcommand: 'bootstrap'
+          actions_comment: true
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'ap-northeast-1'
 
       - name: cdk diff
         uses: youyo/aws-cdk-github-actions@v1
@@ -106,6 +115,11 @@ Recommended to get `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from secrets.
 
 [MIT](LICENSE)
 
+
 ## Author
+
+[RyanOxtoby](https://github.com/RyanOxtoby)
+
+## Forked From
 
 [youyo](https://github.com/youyo)
