@@ -97,7 +97,7 @@ function main(){
 	installTypescript
 	installAwsCdk
 	installPipRequirements
-	runCdk
+	runCdk ${INPUT_CDK_ARGS}
 }
 
 main
