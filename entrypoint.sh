@@ -15,6 +15,7 @@ function installTypescript(){
 }
 
 function runGoModuleFetch() {
+	echo ">>> We are running: $(go version)"
 	go mod tidy
 }
 
@@ -101,7 +102,6 @@ ${output}
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
-	ls ${GITHUB_WORKSPACE}
 	#installTypescript
 	runGoModuleFetch
 	installAwsCdk
