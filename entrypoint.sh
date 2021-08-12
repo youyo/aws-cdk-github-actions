@@ -97,9 +97,10 @@ ${output}
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
-	installTypescript
+	ls ${GITHUB_WORKSPACE}
+	#installTypescript
 	installAwsCdk
-	installPipRequirements
+	#installPipRequirements
 	runCdk ${INPUT_CDK_ARGS}
 }
 
