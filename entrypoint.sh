@@ -16,7 +16,7 @@ function installTypescript(){
 
 function runGoModuleFetch() {
 	echo ">>> We are running: $(go version)"
-	go mod tidy
+# 	go mod tidy
 }
 
 function installAwsCdk(){
