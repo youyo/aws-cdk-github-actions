@@ -14,7 +14,6 @@ function installTypescript(){
 	npm install typescript
 }
 
-
 function installAwsCdk(){
 	echo "Install aws-cdk ${INPUT_CDK_VERSION}"
 	if [ "${INPUT_CDK_VERSION}" == "latest" ]; then
