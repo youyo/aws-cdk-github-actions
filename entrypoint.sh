@@ -14,10 +14,6 @@ function installTypescript(){
 	npm install typescript
 }
 
-function runGoModuleFetch() {
-	echo ">>> We are running: $(go version)"
-# 	go mod tidy
-}
 
 function installAwsCdk(){
 	echo "Install aws-cdk ${INPUT_CDK_VERSION}"
@@ -102,10 +98,9 @@ ${output}
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
-	#installTypescript
-	runGoModuleFetch
+	installTypescript
 	installAwsCdk
-	#installPipRequirements
+	installPipRequirements
 	runCdk ${INPUT_CDK_ARGS}
 }
 
