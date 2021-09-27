@@ -62,10 +62,12 @@ function installPipRequirements(){
 
 function runCdk(){
 	echo "Run cdk ${INPUT_CDK_SUBCOMMAND} ${*} \"${INPUT_CDK_STACK}\""
-	output=$(cdk ${INPUT_CDK_SUBCOMMAND} ${*} "${INPUT_CDK_STACK}" 2>&1)
+	set -o pipefail
+	cdk ${INPUT_CDK_SUBCOMMAND} ${*} "${INPUT_CDK_STACK}" 2>&1 | tee output.log
 	exitCode=${?}
+	set +o pipefail
 	echo ::set-output name=status_code::${exitCode}
-	echo "${output}"
+	output=$(cat output.log)
 
 	commentStatus="Failed"
 	if [ "${exitCode}" == "0" ]; then
