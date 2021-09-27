@@ -7,6 +7,7 @@ AWS-CDK GitHub Actions allow you to run `cdk deploy` and `cdk diff` and ... on y
 - TypeScript
 - JavaScript
 - Python
+- Golang
 
 ## Example usage
 
