@@ -61,12 +61,12 @@ function installPipRequirements(){
 }
 
 function runCdk(){
-  user=$(stat -c "%u" node_modules)
-  group=$(stat -c "%g" node_modules)
-  addgroup -g $group github
-  adduser -u $user -G github -D github
-  mkdir -p cdk.out
-  chown github:github cdk.out
+	user=$(stat -c "%u" node_modules)
+	group=$(stat -c "%g" node_modules)
+	addgroup -g $group github
+	adduser -u $user -G github -D github
+	mkdir -p cdk.out
+	chown github:github cdk.out
 
 	echo "Run cdk ${INPUT_CDK_SUBCOMMAND} ${*} \"${INPUT_CDK_STACK}\""
 	set -o pipefail
