@@ -47,9 +47,9 @@ function installPipRequirements(){
 	if [ -e "requirements.txt" ]; then
 		echo "Install requirements.txt"
 		if [ "${INPUT_DEBUG_LOG}" == "true" ]; then
-			pip install -r requirements.txt
+			pip install --ignore-installed -r requirements.txt
 		else
-			pip install -r requirements.txt >/dev/null 2>&1
+			pip install --ignore-installed -r requirements.txt >/dev/null 2>&1
 		fi
 
 		if [ "${?}" -ne 0 ]; then
