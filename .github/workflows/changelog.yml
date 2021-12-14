@@ -1,0 +1,44 @@
+# Stolen from https://github.com/mrchief/aws-creds-okta-action/blob/master/.github/workflows/changelog.yml
+name: Auto Changelog
+
+on:
+  push:
+    branches:
+      - master
+      - 'releases/**'
+
+jobs:
+  push:
+    name: Push Container
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci: Release')"
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - name: autochangelog-action
+        id: ac
+        uses: rubenfiszel/autochangelog-action@v0.13.0
+        with:
+          changelog_file: './CHANGELOG.md'
+          manifest_file: './manifest.yml'
+          dry_run: false
+          issues_url_prefix: 'https://github.com/${{ github.repository }}/issues'
+          tag_prefix: 'v'
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3.10.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'Update changelog and manifest'
+          title: 'ci: Release ${{ steps.ac.outputs.version }}'
+          body: |
+            Release v${{ steps.ac.outputs.version }}
+          labels: autorelease
+          branch: automatic-release-prs
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pr_number }}"
