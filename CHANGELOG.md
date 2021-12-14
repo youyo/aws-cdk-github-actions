@@ -1,3 +1,9 @@
+# 2.0.7 - 14-12-2021
+
+## Unclassified Changes
+
+- Try to fix docker push ([#10](https://github.com/mrmeyers99/aws-cdk-github-actions/issues10))
+
 # 2.0.6 - 14-12-2021
 
 ## Unclassified Changes
