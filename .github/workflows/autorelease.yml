@@ -18,10 +18,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: master
+
       - name: get version
         id: version
         run: |
           sed -n 's/^version:\s\(.*\)$/\1/p' ${{ env.manifest_file }} | xargs -I {} echo "::set-output name=version::{}"
+
       - name: get changelog
         id: changelog
         run: |
@@ -31,10 +33,12 @@ jobs:
           changelog="${changelog//$'\n'/'%0A'}"
           changelog="${changelog//$'\r'/'%0D'}"
           echo "::set-output name=changelog::$changelog"
+
       - name: echo version and changelog
         run: |
           echo "${{ steps.version.outputs.version}}"
           echo "${{ steps.changelog.outputs.changelog }}"
+
       - name: Create Release
         uses: ncipollo/release-action@v1.4.0
         with:
@@ -69,11 +73,6 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v1.0.0
@@ -89,6 +88,7 @@ jobs:
           images: ${{ env.IMAGE_NAME }},ghcr.io/${{ env.IMAGE_NAME }}
           tags: |
             type=semver,pattern={{version}},value=${{needs.github-release.outputs.version}}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v2.7.0
         with:
