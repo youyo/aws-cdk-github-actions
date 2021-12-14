@@ -1,3 +1,9 @@
+# 2.0.6 - 14-12-2021
+
+## Unclassified Changes
+
+- Revert redundant tag creation ([#8](https://github.com/mrmeyers99/aws-cdk-github-actions/issues8))
+
 # 2.0.5 - 14-12-2021
 
 ## Unclassified Changes
