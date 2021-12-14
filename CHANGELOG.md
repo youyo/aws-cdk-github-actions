@@ -1,3 +1,9 @@
+# 2.0.8 - 14-12-2021
+
+## Unclassified Changes
+
+- Remove buildx, set env variable ([#12](https://github.com/mrmeyers99/aws-cdk-github-actions/issues12))
+
 # 2.0.7 - 14-12-2021
 
 ## Unclassified Changes
