@@ -3,10 +3,10 @@ name: Create and publish a Docker image
 
 on:
   push:
-    branches: [
-        'master', 'publish-to-ghcr'
-    ]
-
+    branches:
+      - 'master'
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
