@@ -1,3 +1,9 @@
+# 2.0.9 - 14-12-2021
+
+## Unclassified Changes
+
+- Fix docker image metadata ([#14](https://github.com/mrmeyers99/aws-cdk-github-actions/issues14))
+
 # 2.0.8 - 14-12-2021
 
 ## Unclassified Changes
