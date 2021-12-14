@@ -36,15 +36,22 @@ jobs:
 
       - name: echo version and changelog
         run: |
-          echo "${{ steps.version.outputs.version}}"
+          echo "${{ steps.version.outputs.version }}"
           echo "${{ steps.changelog.outputs.changelog }}"
+
+      - name: push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ steps.version.outputs.version }}
 
       - name: Create Release
         uses: ncipollo/release-action@v1.4.0
         with:
           name: ${{ steps.version.outputs.version }}
           tag: v${{ steps.version.outputs.version }}
-          body: ${{ steps.changelog.outputs.changelog}}
+          body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
           # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
@@ -87,7 +94,7 @@ jobs:
         with:
           images: ${{ env.IMAGE_NAME }},ghcr.io/${{ env.IMAGE_NAME }}
           tags: |
-            type=semver,pattern={{version}},value=${{needs.github-release.outputs.version}}
+            type=semver,pattern={{version}},value=${{needs.github-release.outputs.version }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2.7.0
