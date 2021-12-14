@@ -1,3 +1,9 @@
+# 2.0.4 - 14-12-2021
+
+## Unclassified Changes
+
+- Don't deploy to docker hub ([#4](https://github.com/mrmeyers99/aws-cdk-github-actions/issues4))
+
 # 2.0.3 - 14-12-2021
 
 ## Unclassified Changes
