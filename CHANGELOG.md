@@ -1,3 +1,9 @@
+# 2.0.5 - 14-12-2021
+
+## Unclassified Changes
+
+- Create git tag during auto release ([#6](https://github.com/mrmeyers99/aws-cdk-github-actions/issues6))
+
 # 2.0.4 - 14-12-2021
 
 ## Unclassified Changes
