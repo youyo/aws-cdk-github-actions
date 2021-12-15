@@ -97,6 +97,7 @@ ${output}
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
+	echo "run npm ci"
   npm ci
 	installAwsCdk
 	installPipRequirements
