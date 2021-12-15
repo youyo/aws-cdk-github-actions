@@ -10,36 +10,34 @@ function parseInputs(){
 	fi
 }
 
-function installTypescript(){
-	npm install typescript
+function installNpmPackage(){
+	package=$1
+	scope=$2
+	echo "Install $package with scope $scope"
+
+	if [ "${INPUT_DEBUG_LOG}" == "true" ] && [ "$scope" == "local" ]; then
+		npm install $package
+	elif [ "${INPUT_DEBUG_LOG}" == "true" ] && [ "$scope" == "global" ]; then
+		sudo npm install -g $package
+	elif [ "$scope" == "local" ]; then
+		npm install $package --log-level=error --no-fund --no-audit $package >/dev/null 2>&1
+	else
+		sudo npm install -g --log-level=error --no-fund --no-audit $package >/dev/null 2>&1
+	fi
+
+	if [ "${?}" -ne 0 ]; then
+		echo "Failed to install $package"
+	else
+		echo "Successful install $package"
+	fi
 }
 
 function installAwsCdk(){
 	echo "Install aws-cdk ${INPUT_CDK_VERSION}"
 	if [ "${INPUT_CDK_VERSION}" == "latest" ]; then
-		if [ "${INPUT_DEBUG_LOG}" == "true" ]; then
-			npm install -g aws-cdk
-		else
-			npm install -g aws-cdk >/dev/null 2>&1
-		fi
-
-		if [ "${?}" -ne 0 ]; then
-			echo "Failed to install aws-cdk ${INPUT_CDK_VERSION}"
-		else
-			echo "Successful install aws-cdk ${INPUT_CDK_VERSION}"
-		fi
+	  installNpmPackage aws-cdk global
 	else
-		if [ "${INPUT_DEBUG_LOG}" == "true" ]; then
-			npm install -g aws-cdk@${INPUT_CDK_VERSION}
-		else
-			npm install -g aws-cdk@${INPUT_CDK_VERSION} >/dev/null 2>&1
-		fi
-
-		if [ "${?}" -ne 0 ]; then
-			echo "Failed to install aws-cdk ${INPUT_CDK_VERSION}"
-		else
-			echo "Successful install aws-cdk ${INPUT_CDK_VERSION}"
-		fi
+		installNpmPackage aws-cdk@${INPUT_CDK_VERSION} global
 	fi
 }
 
@@ -99,7 +97,7 @@ ${output}
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
-	installTypescript
+	installNpmPackage typescript local
 	installAwsCdk
 	installPipRequirements
 	runCdk ${INPUT_CDK_ARGS}
