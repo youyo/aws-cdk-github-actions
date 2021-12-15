@@ -1,3 +1,9 @@
+# 2.0.10 - 15-12-2021
+
+## Unclassified Changes
+
+- Run docker as a non root user to work around permissions issue caused by upgrading to alpine 3.14 ([#19](https://github.com/mrmeyers99/aws-cdk-github-actions/issues19))
+
 # 2.0.9 - 14-12-2021
 
 ## Unclassified Changes
