@@ -78,6 +78,7 @@ function runCdk(){
 }
 
 function main(){
+        node -v
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
 	installTypescript
