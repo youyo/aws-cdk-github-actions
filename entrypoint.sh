@@ -12,6 +12,7 @@ function parseInputs(){
 
 function installTypescript(){
 	npm install typescript
+	npm install ts-node
 }
 
 function installAwsCdk(){
