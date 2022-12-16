@@ -1,6 +1,6 @@
 # AWS-CDK GitHub Actions
 
-AWS-CDK GitHub Actions allow you to run `cdk deploy` and `cdk diff` and ... on your pull requests to help you review.
+AWS-CDK GitHub Actions allow you to run `cdk deploy` and `cdk diff` (among other cdk subcommands) on your pull requests to help you review.
 
 ## Supported language
 
@@ -53,9 +53,9 @@ jobs:
           AWS_DEFAULT_REGION: 'ap-northeast-1'
 ```
 
-### Can I take a assume-role?
+### Can I use assume-role?
 
-If you use assume-role, we recommended using awscredswrap!  
+If you use assume-role, we recommend using (awscredswrap)[https://github.com/marketplace/actions/aws-assume-role-github-actions].
 See: https://github.com/marketplace/actions/aws-assume-role-github-actions#use-as-github-actions
 
 ```yaml
@@ -84,7 +84,7 @@ jobs:
 
 ## Inputs
 
-- `cdk_subcommand` **Required** AWS CDK subcommand to execute.
+- `cdk_subcommand` **Required** AWS CDK subcommand to execute ('deploy', 'diff', etc.)
 - `cdk_version` AWS CDK version to install. (default: 'latest')
 - `cdk_stack` AWS CDK stack name to execute. (default: '*')
 - `working_dir` AWS CDK working directory. (default: '.')
@@ -101,7 +101,7 @@ jobs:
 - `AWS_SECRET_ACCESS_KEY` **Required**
 - `GITHUB_TOKEN` Required for `actions_comment=true`
 
-Recommended to get `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from secrets. A github token is [automatically made available](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token) as a secret as `GITHUB_TOKEN`. 
+Recommended to get `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from secrets. The github token is [automatically made available](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token) as a secret as `GITHUB_TOKEN`. 
 
 ## License
 
