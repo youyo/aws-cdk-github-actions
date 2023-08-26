@@ -99,6 +99,10 @@ ${output}
 function main(){
 	parseInputs
 	cd ${GITHUB_WORKSPACE}/${INPUT_WORKING_DIR}
+	
+	# Fix for https://github.com/actions/checkout/issues/766
+	git config --global --add safe.directory "$GITHUB_WORKSPACE"
+	
 	installTypescript
 	installAwsCdk
 	installPipRequirements
